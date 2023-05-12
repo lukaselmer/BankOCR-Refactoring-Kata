@@ -48,6 +48,7 @@ export function parse(lines: string[]): string[] {
       valid: true,
     }
     let result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    let newResult = new Result()
     for (let pos = 0; pos < 9; ++pos) {
       handleNumeralPosition(result, pos, lines, i, resultContext)
     }
@@ -88,4 +89,17 @@ function digitOk(numeral: number, lines: string[], i: number, pos: number) {
     }
   }
   return true
+}
+
+class Result {
+  private valid: boolean = true
+  public result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+
+  markInvalid() {
+    this.valid = false
+  }
+
+  get isValid() {
+    return this.valid
+  }
 }
