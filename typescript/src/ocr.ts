@@ -48,6 +48,16 @@ export function parse(rawLines: string[]): string[] {
     lines.push(rawLines.slice(i, i + 4))
   }
 
+  const allBlocks = []
+  for (let line of lines) {
+    const blocks = []
+    for (let pos = 0; pos < 9; ++pos) {
+      const block = line.map((l) => l.slice(4 * pos, 4 * pos + 3))
+      blocks.push(block)
+    }
+    allBlocks.push(blocks)
+  }
+
   for (let line of lines) {
     let result = new Result()
     for (let pos = 0; pos < 9; ++pos) {
