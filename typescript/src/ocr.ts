@@ -85,10 +85,6 @@ class Result {
     return `${this.joinDigits()}${this.suffix()}`
   }
 
-  private joinDigits() {
-    return this.result.join('')
-  }
-
   private suffix() {
     return this.isValid ? '   ' : 'ILL'
   }
@@ -98,6 +94,10 @@ class Result {
   }
 
   get isValid() {
-    return this.valid
+    return !this.joinDigits().includes('?')
+  }
+
+  private joinDigits() {
+    return this.result.join('')
   }
 }
