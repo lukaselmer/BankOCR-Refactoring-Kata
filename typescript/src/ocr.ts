@@ -44,15 +44,12 @@ const NUMERALS = [
 export function parse(lines: string[]): string[] {
   const allResults: string[] = []
   for (let i = 0; i < lines.length; i += 4) {
-    const resultContext = {
-      valid: true,
-    }
     let result = new Result()
     for (let pos = 0; pos < 9; ++pos) {
-      handleNumeralPosition(result, pos, lines, i, resultContext)
+      handleNumeralPosition(result, pos, lines, i)
     }
 
-    if (!resultContext.valid) {
+    if (!result.isValid) {
       result.result[10] = 'I'
       result.result[11] = result.result[12] = 'L'
     }
@@ -61,15 +58,9 @@ export function parse(lines: string[]): string[] {
   return allResults
 }
 
-function handleNumeralPosition(
-  result: Result,
-  pos: number,
-  lines: string[],
-  i: number,
-  resultContext: { valid: boolean }
-) {
+function handleNumeralPosition(result: Result, pos: number, lines: string[], i: number) {
   result.result[pos] = findMatchingNumeral(lines, i, pos)
-  if (result.result[pos] === '?') resultContext.valid = false
+  if (result.result[pos] === '?') result.markInvalid()
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number) {
@@ -105,4 +96,8 @@ class Result {
   stringifyResult() {
     return this.result.join('')
   }
+
+  //   suffix() {
+  //     return this.isValid ? '   ' : ' ILL'
+  //   }
 }
