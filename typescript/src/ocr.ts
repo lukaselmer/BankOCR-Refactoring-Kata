@@ -49,10 +49,7 @@ export function parse(lines: string[]): string[] {
     }
     let result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     for (let pos = 0; pos < 9; ++pos) {
-      result[pos] = '?'
-      if (!findMatchingNumeral(lines, i, pos, result)) {
-        resultContext.valid = false
-      }
+      handleNumeralPosition(result, pos, lines, i, resultContext)
     }
 
     if (!resultContext.valid) {
@@ -62,6 +59,19 @@ export function parse(lines: string[]): string[] {
     allResults.push(result.join(''))
   }
   return allResults
+}
+
+function handleNumeralPosition(
+  result: string[],
+  pos: number,
+  lines: string[],
+  i: number,
+  resultContext: { valid: boolean }
+) {
+  result[pos] = '?'
+  if (!findMatchingNumeral(lines, i, pos, result)) {
+    resultContext.valid = false
+  }
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number, work: string[]) {
