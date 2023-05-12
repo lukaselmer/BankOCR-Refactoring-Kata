@@ -1,3 +1,5 @@
+import { numerals } from './numerals'
+
 export function parse(rawLines: string[]): string[] {
   const allResults: string[] = []
   const lines = []
@@ -42,10 +44,6 @@ function blocksAreEqual(a: string[], b: string[]) {
   return a.every((row, index) => row === b[index])
 }
 
-function numerals() {
-  return NUMERALS.map((block, numeral) => ({ block, numeral }))
-}
-
 interface Numeral {
   block: string[]
   numeral: number
@@ -76,46 +74,3 @@ class Result {
 }
 
 type DigitOrInvalid = number | '?'
-
-// prettier-ignore
-const NUMERALS = [
-    [' _  ',
-     '| | ',
-     '|_| ',
-     '    '],
-    ['    ',
-     '  | ',
-     '  | ',
-     '    '],
-    [' _  ',
-     ' _| ',
-     '|_  ',
-     '    '],
-    [' _  ',
-     ' _| ',
-     ' _| ',
-     '    '],
-    ['    ',
-     '|_| ',
-     '  | ',
-     '    '],
-    [' _  ',
-     '|_  ',
-     ' _| ',
-     '    '],
-    [' _  ',
-     '|_  ',
-     '|_| ',
-     '    '],
-    [' _  ',
-     '  | ',
-     '  | ',
-     '    '],
-    [' _  ',
-     '|_| ',
-     '|_| ',
-     '    '],
-    [' _  ',
-     '|_| ',
-     ' _| ',
-     '    ']];
