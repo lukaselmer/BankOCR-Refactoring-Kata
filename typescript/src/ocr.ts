@@ -83,9 +83,13 @@ function findMatchingNumeral(lines: string[]): DigitOrInvalid {
 }
 
 function matchesNumeral(numeral: number, lines: string[]) {
+  return blocksAreEqual(NUMERALS[numeral], lines)
+}
+
+function blocksAreEqual(a: string[], b: string[]) {
   for (let row = 0; row < 4; ++row) {
     for (let col = 0; col < 4; ++col) {
-      if (NUMERALS[numeral][row][col] !== lines[row][col]) return false
+      if (a[row][col] !== b[row][col]) return false
     }
   }
   return true
