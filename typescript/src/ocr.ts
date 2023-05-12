@@ -77,7 +77,7 @@ function digitOk(numeral: number, lines: string[], i: number, pos: number) {
 }
 
 class Result {
-  public result: (number | '?')[] = []
+  private result: (number | '?')[] = []
 
   addDigit(digit: number | '?') {
     this.result.push(digit)
