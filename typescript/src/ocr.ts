@@ -42,19 +42,19 @@ const NUMERALS = [
      '    ']];
 
 export function parse(lines: string[]): string[] {
-  const result: string[] = []
+  const allResults: string[] = []
   for (let i = 0; i < lines.length; i += 4) {
-    let work: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    let result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     for (let pos = 0; pos < 9; ++pos) {
-      work[pos] = '?'
-      if (!findMatchingNumeral(lines, i, pos, work)) {
-        work[10] = 'I'
-        work[11] = work[12] = 'L'
+      result[pos] = '?'
+      if (!findMatchingNumeral(lines, i, pos, result)) {
+        result[10] = 'I'
+        result[11] = result[12] = 'L'
       }
     }
-    result.push(work.join(''))
+    allResults.push(result.join(''))
   }
-  return result
+  return allResults
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number, work: string[]) {
