@@ -49,9 +49,10 @@ export function parse(lines: string[]): string[] {
   }
 
   for (let i = 0; i < logicalLines.length; i += 1) {
+    const currentLines = logicalLines[i]
     let result = new Result()
     for (let pos = 0; pos < 9; ++pos) {
-      handleNumeralPosition(result, pos, lines, i * 4)
+      handleNumeralPosition(result, pos, currentLines)
     }
 
     allResults.push(result.stringifyResult())
@@ -59,8 +60,8 @@ export function parse(lines: string[]): string[] {
   return allResults
 }
 
-function handleNumeralPosition(result: Result, pos: number, lines: string[], i: number) {
-  result.addDigit(findMatchingNumeral(lines, i, pos))
+function handleNumeralPosition(result: Result, pos: number, lines: string[]) {
+  result.addDigit(findMatchingNumeral(lines, 0, pos))
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number): DigitOrInvalid {
