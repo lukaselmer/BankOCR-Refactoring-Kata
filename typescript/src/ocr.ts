@@ -56,7 +56,6 @@ export function parse(lines: string[]): string[] {
 
 function handleNumeralPosition(result: Result, pos: number, lines: string[], i: number) {
   result.result[pos] = findMatchingNumeral(lines, i, pos)
-  if (result.result[pos] === '?') result.markInvalid()
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number) {
@@ -78,7 +77,6 @@ function digitOk(numeral: number, lines: string[], i: number, pos: number) {
 }
 
 class Result {
-  private valid: boolean = true
   public result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
   stringifyResult() {
@@ -87,10 +85,6 @@ class Result {
 
   private suffix() {
     return this.isValid ? '   ' : 'ILL'
-  }
-
-  markInvalid() {
-    this.valid = false
   }
 
   get isValid() {
