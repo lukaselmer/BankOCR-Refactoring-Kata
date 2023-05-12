@@ -74,20 +74,29 @@ function handleNumeralPosition(result: Result, lines: string[]) {
 }
 
 function findMatchingNumeral(lines: string[]): DigitOrInvalid {
-  for (let numeral = 0; numeral < NUMERALS.length; ++numeral) {
-    if (matchesNumeral(numeral, lines)) {
-      return numeral
-    }
+  for (let numeral of numerals()) {
+    if (matchesNumeral(numeral, lines)) return numeral.numeral
   }
   return '?'
 }
 
-function matchesNumeral(numeral: number, lines: string[]) {
-  return blocksAreEqual(NUMERALS[numeral], lines)
+function matchesNumeral(numeral: Numeral, lines: string[]) {
+  return blocksAreEqual(numeral.block, lines)
 }
 
 function blocksAreEqual(a: string[], b: string[]) {
   return a.every((row, index) => row === b[index])
+}
+
+function numerals() {
+  return NUMERALS.map((block, numeral) => {
+    return { block, numeral }
+  })
+}
+
+interface Numeral {
+  block: string[]
+  numeral: number
 }
 
 class Result {
