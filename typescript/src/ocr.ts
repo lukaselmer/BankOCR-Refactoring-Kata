@@ -81,19 +81,23 @@ class Result {
   private valid: boolean = true
   public result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
+  stringifyResult() {
+    return `${this.joinDigits()}${this.suffix()}`
+  }
+
+  private joinDigits() {
+    return this.result.join('')
+  }
+
+  private suffix() {
+    return this.isValid ? '   ' : 'ILL'
+  }
+
   markInvalid() {
     this.valid = false
   }
 
   get isValid() {
     return this.valid
-  }
-
-  stringifyResult() {
-    return this.result.join('') + this.suffix()
-  }
-
-  suffix() {
-    return this.isValid ? '   ' : 'ILL'
   }
 }
