@@ -68,15 +68,14 @@ function handleNumeralPosition(
   i: number,
   resultContext: { valid: boolean }
 ) {
-  result[pos] = findMatchingNumeral(lines, i, pos, result)
+  result[pos] = findMatchingNumeral(lines, i, pos)
   if (result[pos] === '?') resultContext.valid = false
 }
 
-function findMatchingNumeral(lines: string[], i: number, pos: number, work: string[]) {
+function findMatchingNumeral(lines: string[], i: number, pos: number) {
   for (let numeral = 0; numeral <= 9; ++numeral) {
     if (digitOk(numeral, lines, i, pos)) {
-      work[pos] = String.fromCharCode(numeral + '0'.charCodeAt(0))
-      return work[pos]
+      return String.fromCharCode(numeral + '0'.charCodeAt(0))
     }
   }
   return '?'
