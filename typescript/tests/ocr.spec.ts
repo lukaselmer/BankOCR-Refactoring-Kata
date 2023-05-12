@@ -1,9 +1,9 @@
-import { Ocr } from '../src/ocr'
+import { parse } from '../src/ocr'
 
 describe('Ocr', () => {
   it('parses_one_record_with_888888888', () => {
     expect(
-      Ocr.parse([
+      parse([
         ' _   _   _   _   _   _   _   _   _  ',
         '|_| |_| |_| |_| |_| |_| |_| |_| |_| ',
         '|_| |_| |_| |_| |_| |_| |_| |_| |_| ',
@@ -14,7 +14,7 @@ describe('Ocr', () => {
 
   it('parses_two_records_with_888888888', () => {
     expect(
-      Ocr.parse([
+      parse([
         ' _   _   _   _   _   _   _   _   _  ',
         '|_| |_| |_| |_| |_| |_| |_| |_| |_| ',
         '|_| |_| |_| |_| |_| |_| |_| |_| |_| ',
@@ -29,7 +29,7 @@ describe('Ocr', () => {
 
   it('parses_one_record_with_123456790', () => {
     expect(
-      Ocr.parse([
+      parse([
         '     _   _       _   _   _   _   _  ',
         '  |  _|  _| |_| |_  |_    | |_| | | ',
         '  | |_   _|   |  _| |_|   |  _| |_| ',
@@ -40,7 +40,7 @@ describe('Ocr', () => {
 
   it('parses_two_records', () => {
     expect(
-      Ocr.parse([
+      parse([
         '     _   _       _   _   _   _   _  ',
         '  |  _|  _| |_| |_  |_    | |_| | | ',
         '  | |_   _|   |  _| |_|   |  _| |_| ',
@@ -55,7 +55,7 @@ describe('Ocr', () => {
 
   it('parses_illegal_digit', () => {
     expect(
-      Ocr.parse([
+      parse([
         '     _   _       _   _   _   _   _  ',
         '  |  _| |_|  _| |_  |_    | |_| | | ',
         '  | |_   _    |  _| |_|   |  _| |_| ',
