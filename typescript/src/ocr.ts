@@ -61,7 +61,7 @@ export function parse(rawLines: string[]): string[] {
   for (let blocks of allBlocks) {
     let result = new Result()
     for (let block of blocks) {
-      handleNumeralPosition(result, 0, block)
+      handleNumeralPosition(result, block)
     }
 
     allResults.push(result.stringifyResult())
@@ -69,8 +69,8 @@ export function parse(rawLines: string[]): string[] {
   return allResults
 }
 
-function handleNumeralPosition(result: Result, pos: number, lines: string[]) {
-  result.addDigit(findMatchingNumeral(lines, pos))
+function handleNumeralPosition(result: Result, lines: string[]) {
+  result.addDigit(findMatchingNumeral(lines, 0))
 }
 
 function findMatchingNumeral(lines: string[], pos: number): DigitOrInvalid {
