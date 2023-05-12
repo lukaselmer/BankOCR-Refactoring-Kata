@@ -87,12 +87,7 @@ function matchesNumeral(numeral: number, lines: string[]) {
 }
 
 function blocksAreEqual(a: string[], b: string[]) {
-  for (let row = 0; row < a.length; ++row) {
-    for (let col = 0; col < a[row].length; ++col) {
-      if (a[row][col] !== b[row][col]) return false
-    }
-  }
-  return true
+  return a.every((row, x) => row === b[x])
 }
 
 class Result {
