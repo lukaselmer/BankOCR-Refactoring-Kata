@@ -44,13 +44,20 @@ const NUMERALS = [
 export function parse(lines: string[]): string[] {
   const allResults: string[] = []
   for (let i = 0; i < lines.length; i += 4) {
+    const resultContext = {
+      valid: true,
+    }
     let result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     for (let pos = 0; pos < 9; ++pos) {
       result[pos] = '?'
       if (!findMatchingNumeral(lines, i, pos, result)) {
-        result[10] = 'I'
-        result[11] = result[12] = 'L'
+        resultContext.valid = false
       }
+    }
+
+    if (!resultContext.valid) {
+      result[10] = 'I'
+      result[11] = result[12] = 'L'
     }
     allResults.push(result.join(''))
   }
