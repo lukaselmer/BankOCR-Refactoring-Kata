@@ -56,7 +56,7 @@ export function parse(lines: string[]): string[] {
       result.result[10] = 'I'
       result.result[11] = result.result[12] = 'L'
     }
-    allResults.push(result.result.join(''))
+    allResults.push(result.stringifyResult())
   }
   return allResults
 }
@@ -100,5 +100,9 @@ class Result {
 
   get isValid() {
     return this.valid
+  }
+
+  stringifyResult() {
+    return this.result.join('')
   }
 }
