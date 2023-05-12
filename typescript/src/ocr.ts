@@ -48,8 +48,7 @@ export function parse(lines: string[]): string[] {
     logicalLines.push(lines.slice(i, i + 4))
   }
 
-  for (let i = 0; i < logicalLines.length; i += 1) {
-    const currentLines = logicalLines[i]
+  for (let currentLines of logicalLines) {
     let result = new Result()
     for (let pos = 0; pos < 9; ++pos) {
       handleNumeralPosition(result, pos, currentLines)
