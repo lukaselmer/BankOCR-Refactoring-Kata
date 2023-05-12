@@ -50,11 +50,7 @@ export function parse(lines: string[]): string[] {
       let got1 = false
       for (let numeral = 0; numeral <= 9; ++numeral) {
         let ok = true
-        for (let row = 0; row < 4; ++row) {
-          for (let col = 0; col < 4; ++col) {
-            if (NUMERALS[numeral][row][col] !== lines[i + row][4 * pos + col]) ok = false
-          }
-        }
+        ok = checkSomething(numeral, lines, i, pos, ok)
         if (ok) {
           work[pos] = String.fromCharCode(numeral + '0'.charCodeAt(0))
           got1 = true
@@ -69,4 +65,12 @@ export function parse(lines: string[]): string[] {
     result.push(work.join(''))
   }
   return result
+}
+function checkSomething(numeral: number, lines: string[], i: number, pos: number, ok: boolean) {
+  for (let row = 0; row < 4; ++row) {
+    for (let col = 0; col < 4; ++col) {
+      if (NUMERALS[numeral][row][col] !== lines[i + row][4 * pos + col]) ok = false
+    }
+  }
+  return ok
 }
