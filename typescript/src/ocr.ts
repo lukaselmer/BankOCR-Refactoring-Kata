@@ -47,30 +47,29 @@ export function parse(lines: string[]): string[] {
     const resultContext = {
       valid: true,
     }
-    let result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    let newResult = new Result()
+    let result = new Result()
     for (let pos = 0; pos < 9; ++pos) {
       handleNumeralPosition(result, pos, lines, i, resultContext)
     }
 
     if (!resultContext.valid) {
-      result[10] = 'I'
-      result[11] = result[12] = 'L'
+      result.result[10] = 'I'
+      result.result[11] = result.result[12] = 'L'
     }
-    allResults.push(result.join(''))
+    allResults.push(result.result.join(''))
   }
   return allResults
 }
 
 function handleNumeralPosition(
-  result: string[],
+  result: Result,
   pos: number,
   lines: string[],
   i: number,
   resultContext: { valid: boolean }
 ) {
-  result[pos] = findMatchingNumeral(lines, i, pos)
-  if (result[pos] === '?') resultContext.valid = false
+  result.result[pos] = findMatchingNumeral(lines, i, pos)
+  if (result.result[pos] === '?') resultContext.valid = false
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number) {
