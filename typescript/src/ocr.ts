@@ -60,8 +60,8 @@ export function parse(rawLines: string[]): string[] {
 
   for (let blocks of allBlocks) {
     let result = new Result()
-    for (let pos = 0; pos < 9; ++pos) {
-      handleNumeralPosition(result, 0, blocks[pos])
+    for (let block of blocks) {
+      handleNumeralPosition(result, 0, block)
     }
 
     allResults.push(result.stringifyResult())
