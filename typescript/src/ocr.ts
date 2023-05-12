@@ -61,7 +61,7 @@ function handleNumeralPosition(result: Result, pos: number, lines: string[], i: 
 function findMatchingNumeral(lines: string[], i: number, pos: number) {
   for (let numeral = 0; numeral <= 9; ++numeral) {
     if (digitOk(numeral, lines, i, pos)) {
-      return String.fromCharCode(numeral + '0'.charCodeAt(0))
+      return numeral
     }
   }
   return '?'
@@ -77,10 +77,10 @@ function digitOk(numeral: number, lines: string[], i: number, pos: number) {
 }
 
 class Result {
-  public result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+  public result: (number | '?')[] = []
 
   stringifyResult() {
-    return `${this.joinDigits()}${this.suffix()}`
+    return `${this.joinDigits()} ${this.suffix()}`
   }
 
   private suffix() {
