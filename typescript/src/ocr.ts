@@ -74,7 +74,7 @@ function handleNumeralPosition(result: Result, lines: string[]) {
 }
 
 function findMatchingNumeral(lines: string[]): DigitOrInvalid {
-  for (let numeral = 0; numeral <= 9; ++numeral) {
+  for (let numeral = 0; numeral < NUMERALS.length; ++numeral) {
     if (matchesNumeral(numeral, lines)) {
       return numeral
     }
