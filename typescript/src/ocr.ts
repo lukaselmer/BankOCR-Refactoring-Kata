@@ -88,10 +88,10 @@ class Result {
   }
 
   private suffix() {
-    return this.isValid ? '   ' : 'ILL'
+    return this.isValid() ? '   ' : 'ILL'
   }
 
-  get isValid() {
+  private isValid() {
     return !this.state.includes('?')
   }
 
