@@ -49,8 +49,7 @@ export function parse(lines: string[]): string[] {
       work[pos] = '?'
       let got1 = false
       for (let numeral = 0; numeral <= 9; ++numeral) {
-        let ok = checkSomething(numeral, lines, i, pos)
-        if (ok) {
+        if (checkSomething(numeral, lines, i, pos)) {
           work[pos] = String.fromCharCode(numeral + '0'.charCodeAt(0))
           got1 = true
           break
