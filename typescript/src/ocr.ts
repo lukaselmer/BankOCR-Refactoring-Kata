@@ -49,10 +49,6 @@ export function parse(lines: string[]): string[] {
       handleNumeralPosition(result, pos, lines, i)
     }
 
-    if (!result.isValid) {
-      result.result[10] = 'I'
-      result.result[11] = result.result[12] = 'L'
-    }
     allResults.push(result.stringifyResult())
   }
   return allResults
@@ -83,7 +79,7 @@ function digitOk(numeral: number, lines: string[], i: number, pos: number) {
 
 class Result {
   private valid: boolean = true
-  public result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+  public result: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
   markInvalid() {
     this.valid = false
@@ -94,10 +90,10 @@ class Result {
   }
 
   stringifyResult() {
-    return this.result.join('')
+    return this.result.join('') + this.suffix()
   }
 
-  //   suffix() {
-  //     return this.isValid ? '   ' : ' ILL'
-  //   }
+  suffix() {
+    return this.isValid ? '   ' : 'ILL'
+  }
 }
