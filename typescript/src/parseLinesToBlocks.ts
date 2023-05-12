@@ -1,20 +1,16 @@
 export function parseLinesToBlocks(rawLines: string[]) {
-  const lines = extractLines(rawLines)
-  const allBlocks = extractBlocks(lines)
-  return allBlocks
+  return extractBlocks(extractLines(rawLines))
 }
 
 function extractBlocks(lines: string[][]) {
-  const allBlocks = []
-  for (let line of lines) {
+  return lines.map((line) => {
     const blocks = []
     for (let pos = 0; pos < 9; ++pos) {
       const block = line.map((l) => l.slice(4 * pos, 4 * pos + 4))
       blocks.push(block)
     }
-    allBlocks.push(blocks)
-  }
-  return allBlocks
+    return blocks
+  })
 }
 
 function extractLines(rawLines: string[]) {
