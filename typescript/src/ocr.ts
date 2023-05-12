@@ -41,17 +41,17 @@ const NUMERALS = [
      ' _| ',
      '    ']];
 
-export function parse(lines: string[]): string[] {
+export function parse(rawLines: string[]): string[] {
   const allResults: string[] = []
-  const logicalLines = []
-  for (let i = 0; i < lines.length; i += 4) {
-    logicalLines.push(lines.slice(i, i + 4))
+  const lines = []
+  for (let i = 0; i < rawLines.length; i += 4) {
+    lines.push(rawLines.slice(i, i + 4))
   }
 
-  for (let currentLines of logicalLines) {
+  for (let line of lines) {
     let result = new Result()
     for (let pos = 0; pos < 9; ++pos) {
-      handleNumeralPosition(result, pos, currentLines)
+      handleNumeralPosition(result, pos, line)
     }
 
     allResults.push(result.stringifyResult())
