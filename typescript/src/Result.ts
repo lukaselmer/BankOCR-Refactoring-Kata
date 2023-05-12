@@ -10,7 +10,7 @@ export class Result {
   }
 
   private suffix() {
-    return this.isValid() ? '   ' : 'ILL'
+    return !this.isValid() ? 'ILL' : '   '
   }
 
   private isValid() {

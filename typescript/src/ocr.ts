@@ -7,9 +7,7 @@ export function parse(lines: string[]): string[] {
 
   return allBlocks.map((blocks) => {
     let result = new Result()
-
     blocks.forEach((block) => handleNumeralPosition(result, block))
-
     return result.stringifyResult()
   })
 }

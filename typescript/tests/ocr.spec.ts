@@ -64,11 +64,14 @@ describe('Ocr', () => {
     ).toEqual(['12??56790 ILL'])
   })
 
-  // it('checksum_fail_returns_ERR', () => {
-  //     expect(Ocr.parse([' _   _       _   _           _   _  ',
-  //                       '|_  |_  |_|  _|   |   | |_| |_| |_  ',
-  //                       '|_| |_|   |  _|   |   |   |  _|  _| ',
-  //                       '                                    '])).
-  //         toEqual(['664371495 ERR']);
-  // });
+  it('checksum_fail_returns_ERR', () => {
+    expect(
+      parse([
+        ' _   _       _   _           _   _  ',
+        '|_  |_  |_|  _|   |   | |_| |_| |_  ',
+        '|_| |_|   |  _|   |   |   |  _|  _| ',
+        '                                    ',
+      ])
+    ).toEqual(['664371495 ERR'])
+  })
 })
