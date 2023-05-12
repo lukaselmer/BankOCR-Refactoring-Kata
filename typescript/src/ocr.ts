@@ -47,8 +47,7 @@ export function parse(lines: string[]): string[] {
     let work: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     for (let pos = 0; pos < 9; ++pos) {
       work[pos] = '?'
-      let got1 = false
-      got1 = findMatchingNumeral(lines, i, pos, work, got1)
+      let got1 = findMatchingNumeral(lines, i, pos, work)
       if (!got1) {
         work[10] = 'I'
         work[11] = work[12] = 'L'
@@ -59,15 +58,14 @@ export function parse(lines: string[]): string[] {
   return result
 }
 
-function findMatchingNumeral(lines: string[], i: number, pos: number, work: string[], got1: boolean) {
+function findMatchingNumeral(lines: string[], i: number, pos: number, work: string[]) {
   for (let numeral = 0; numeral <= 9; ++numeral) {
     if (digitOk(numeral, lines, i, pos)) {
       work[pos] = String.fromCharCode(numeral + '0'.charCodeAt(0))
-      got1 = true
-      break
+      return true
     }
   }
-  return got1
+  return false
 }
 
 function digitOk(numeral: number, lines: string[], i: number, pos: number) {
