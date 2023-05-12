@@ -60,22 +60,22 @@ export function parse(rawLines: string[]): string[] {
 }
 
 function handleNumeralPosition(result: Result, pos: number, lines: string[]) {
-  result.addDigit(findMatchingNumeral(lines, 0, pos))
+  result.addDigit(findMatchingNumeral(lines, pos))
 }
 
-function findMatchingNumeral(lines: string[], i: number, pos: number): DigitOrInvalid {
+function findMatchingNumeral(lines: string[], pos: number): DigitOrInvalid {
   for (let numeral = 0; numeral <= 9; ++numeral) {
-    if (matchesNumeral(numeral, lines, i, pos)) {
+    if (matchesNumeral(numeral, lines, pos)) {
       return numeral
     }
   }
   return '?'
 }
 
-function matchesNumeral(numeral: number, lines: string[], i: number, pos: number) {
+function matchesNumeral(numeral: number, lines: string[], pos: number) {
   for (let row = 0; row < 4; ++row) {
     for (let col = 0; col < 4; ++col) {
-      if (NUMERALS[numeral][row][col] !== lines[i + row][4 * pos + col]) return false
+      if (NUMERALS[numeral][row][col] !== lines[row][4 * pos + col]) return false
     }
   }
   return true
