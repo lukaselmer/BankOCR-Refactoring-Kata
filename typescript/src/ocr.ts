@@ -55,7 +55,7 @@ export function parse(lines: string[]): string[] {
 }
 
 function handleNumeralPosition(result: Result, pos: number, lines: string[], i: number) {
-  result.result[pos] = findMatchingNumeral(lines, i, pos)
+  result.addDigit(findMatchingNumeral(lines, i, pos))
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number) {
@@ -78,6 +78,10 @@ function digitOk(numeral: number, lines: string[], i: number, pos: number) {
 
 class Result {
   public result: (number | '?')[] = []
+
+  addDigit(digit: number | '?') {
+    this.result.push(digit)
+  }
 
   stringifyResult() {
     return `${this.joinDigits()} ${this.suffix()}`
