@@ -58,16 +58,16 @@ function handleNumeralPosition(result: Result, pos: number, lines: string[], i: 
   result.addDigit(findMatchingNumeral(lines, i, pos))
 }
 
-function findMatchingNumeral(lines: string[], i: number, pos: number) {
+function findMatchingNumeral(lines: string[], i: number, pos: number): DigitOrInvalid {
   for (let numeral = 0; numeral <= 9; ++numeral) {
-    if (digitOk(numeral, lines, i, pos)) {
+    if (matchesNumeral(numeral, lines, i, pos)) {
       return numeral
     }
   }
   return '?'
 }
 
-function digitOk(numeral: number, lines: string[], i: number, pos: number) {
+function matchesNumeral(numeral: number, lines: string[], i: number, pos: number) {
   for (let row = 0; row < 4; ++row) {
     for (let col = 0; col < 4; ++col) {
       if (NUMERALS[numeral][row][col] !== lines[i + row][4 * pos + col]) return false
