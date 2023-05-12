@@ -66,11 +66,10 @@ export function parse(lines: string[]): string[] {
   return result
 }
 function checkSomething(numeral: number, lines: string[], i: number, pos: number) {
-  let ok = true
   for (let row = 0; row < 4; ++row) {
     for (let col = 0; col < 4; ++col) {
-      if (NUMERALS[numeral][row][col] !== lines[i + row][4 * pos + col]) ok = false
+      if (NUMERALS[numeral][row][col] !== lines[i + row][4 * pos + col]) return false
     }
   }
-  return ok
+  return true
 }
