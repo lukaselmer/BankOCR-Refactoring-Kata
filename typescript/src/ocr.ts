@@ -86,9 +86,7 @@ function blocksAreEqual(a: string[], b: string[]) {
 }
 
 function numerals() {
-  return NUMERALS.map((block, numeral) => {
-    return { block, numeral }
-  })
+  return NUMERALS.map((block, numeral) => ({ block, numeral }))
 }
 
 interface Numeral {
