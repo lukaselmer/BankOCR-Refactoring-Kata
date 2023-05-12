@@ -21,4 +21,5 @@ export class Result {
     return this.state.join('')
   }
 }
+
 export type DigitOrInvalid = number | '?'

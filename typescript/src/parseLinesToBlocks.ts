@@ -3,6 +3,7 @@ export function parseLinesToBlocks(rawLines: string[]) {
   const allBlocks = extractBlocks(lines)
   return allBlocks
 }
+
 function extractBlocks(lines: string[][]) {
   const allBlocks = []
   for (let line of lines) {
@@ -15,6 +16,7 @@ function extractBlocks(lines: string[][]) {
   }
   return allBlocks
 }
+
 function extractLines(rawLines: string[]) {
   const lines = []
   for (let i = 0; i < rawLines.length; i += 4) {
