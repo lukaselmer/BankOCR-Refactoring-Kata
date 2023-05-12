@@ -1,3 +1,4 @@
+import { Result, DigitOrInvalid } from './Result'
 import { Numeral, numerals } from './numerals'
 
 export function parse(rawLines: string[]): string[] {
@@ -43,29 +44,3 @@ function matchesNumeral(numeral: Numeral, lines: string[]) {
 function blocksAreEqual(a: string[], b: string[]) {
   return a.every((row, index) => row === b[index])
 }
-
-class Result {
-  private state: DigitOrInvalid[] = []
-
-  addDigit(digit: DigitOrInvalid) {
-    this.state.push(digit)
-  }
-
-  stringifyResult() {
-    return `${this.joinDigits()} ${this.suffix()}`
-  }
-
-  private suffix() {
-    return this.isValid() ? '   ' : 'ILL'
-  }
-
-  private isValid() {
-    return !this.state.includes('?')
-  }
-
-  private joinDigits() {
-    return this.state.join('')
-  }
-}
-
-type DigitOrInvalid = number | '?'
