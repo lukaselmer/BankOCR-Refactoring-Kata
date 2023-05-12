@@ -5,16 +5,14 @@ import { parseLinesToBlocks } from './parseLinesToBlocks'
 export function parse(lines: string[]): string[] {
   const allBlocks = parseLinesToBlocks(lines)
 
-  const allResults: string[] = []
-  for (let blocks of allBlocks) {
+  return allBlocks.map((blocks) => {
     let result = new Result()
     for (let block of blocks) {
       handleNumeralPosition(result, block)
     }
 
-    allResults.push(result.stringifyResult())
-  }
-  return allResults
+    return result.stringifyResult()
+  })
 }
 
 function handleNumeralPosition(result: Result, lines: string[]) {
