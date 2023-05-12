@@ -68,10 +68,8 @@ function handleNumeralPosition(
   i: number,
   resultContext: { valid: boolean }
 ) {
-  result[pos] = '?'
-  if (findMatchingNumeral(lines, i, pos, result) === '?') {
-    resultContext.valid = false
-  }
+  result[pos] = findMatchingNumeral(lines, i, pos, result)
+  if (result[pos] === '?') resultContext.valid = false
 }
 
 function findMatchingNumeral(lines: string[], i: number, pos: number, work: string[]) {
