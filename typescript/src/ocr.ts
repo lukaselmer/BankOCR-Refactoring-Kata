@@ -52,16 +52,16 @@ export function parse(rawLines: string[]): string[] {
   for (let line of lines) {
     const blocks = []
     for (let pos = 0; pos < 9; ++pos) {
-      const block = line.map((l) => l.slice(4 * pos, 4 * pos + 3))
+      const block = line.map((l) => l.slice(4 * pos, 4 * pos + 4))
       blocks.push(block)
     }
     allBlocks.push(blocks)
   }
 
-  for (let line of lines) {
+  for (let blocks of allBlocks) {
     let result = new Result()
     for (let pos = 0; pos < 9; ++pos) {
-      handleNumeralPosition(result, pos, line)
+      handleNumeralPosition(result, 0, blocks[pos])
     }
 
     allResults.push(result.stringifyResult())
