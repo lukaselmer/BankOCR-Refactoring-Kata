@@ -69,7 +69,7 @@ function handleNumeralPosition(
   resultContext: { valid: boolean }
 ) {
   result[pos] = '?'
-  if (!findMatchingNumeral(lines, i, pos, result)) {
+  if (findMatchingNumeral(lines, i, pos, result) === '?') {
     resultContext.valid = false
   }
 }
@@ -78,10 +78,10 @@ function findMatchingNumeral(lines: string[], i: number, pos: number, work: stri
   for (let numeral = 0; numeral <= 9; ++numeral) {
     if (digitOk(numeral, lines, i, pos)) {
       work[pos] = String.fromCharCode(numeral + '0'.charCodeAt(0))
-      return true
+      return work[pos]
     }
   }
-  return false
+  return '?'
 }
 
 function digitOk(numeral: number, lines: string[], i: number, pos: number) {
