@@ -47,8 +47,7 @@ export function parse(lines: string[]): string[] {
     let work: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     for (let pos = 0; pos < 9; ++pos) {
       work[pos] = '?'
-      let got1 = findMatchingNumeral(lines, i, pos, work)
-      if (!got1) {
+      if (!findMatchingNumeral(lines, i, pos, work)) {
         work[10] = 'I'
         work[11] = work[12] = 'L'
       }
