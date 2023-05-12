@@ -77,10 +77,10 @@ function digitOk(numeral: number, lines: string[], i: number, pos: number) {
 }
 
 class Result {
-  private result: (number | '?')[] = []
+  private state: DigitOrInvalid[] = []
 
-  addDigit(digit: number | '?') {
-    this.result.push(digit)
+  addDigit(digit: DigitOrInvalid) {
+    this.state.push(digit)
   }
 
   stringifyResult() {
@@ -92,10 +92,12 @@ class Result {
   }
 
   get isValid() {
-    return !this.joinDigits().includes('?')
+    return !this.state.includes('?')
   }
 
   private joinDigits() {
-    return this.result.join('')
+    return this.state.join('')
   }
 }
+
+type DigitOrInvalid = number | '?'
