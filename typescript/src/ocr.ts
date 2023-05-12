@@ -1,4 +1,4 @@
-import { numerals } from './numerals'
+import { Numeral, numerals } from './numerals'
 
 export function parse(rawLines: string[]): string[] {
   const allResults: string[] = []
@@ -42,11 +42,6 @@ function matchesNumeral(numeral: Numeral, lines: string[]) {
 
 function blocksAreEqual(a: string[], b: string[]) {
   return a.every((row, index) => row === b[index])
-}
-
-interface Numeral {
-  block: string[]
-  numeral: number
 }
 
 class Result {
