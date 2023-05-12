@@ -6,11 +6,14 @@ function extractBlocks(lines: string[][]) {
   return lines.map((line) => {
     const blocks = []
     for (let pos = 0; pos < 9; ++pos) {
-      const block = line.map((l) => l.slice(4 * pos, 4 * pos + 4))
-      blocks.push(block)
+      blocks.push(extractBlock(line, pos))
     }
     return blocks
   })
+}
+
+function extractBlock(line: string[], pos: number) {
+  return line.map((l) => l.slice(4 * pos, 4 * pos + 4))
 }
 
 function extractLines(rawLines: string[]) {
