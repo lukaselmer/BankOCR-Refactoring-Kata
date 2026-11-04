@@ -15,3 +15,11 @@ test/**/*.js.map
 dist/
 coverage/
 .nyc_output/
+
+# Yarn 4
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
